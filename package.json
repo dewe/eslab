@@ -1,0 +1,11 @@
+{
+  "name": "eslab",
+  "version": "0.0.1",
+  "description": "event sourcing lab",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "dewe",
+  "license": "MIT"
+}
