@@ -1,7 +1,7 @@
 const assert = require('assert');
 const eventHandler = require('../domain/eventHandler.js')
 
-describe.only('handle event', () => {
+describe('handle events', () => {
     let event = { event: 'cake created', data: { id: 'my-cake' } }
 
     it('applies event data', () => {
@@ -11,8 +11,14 @@ describe.only('handle event', () => {
 
     it('returns a copy', () => {
         initial = {}
-        cake = eventHandler(initial, event)        
+        cake = eventHandler(initial, event)
         assert(cake != initial)
+    })
+
+    it('can be used for reducing multiple events', () => {
+        let events = [event, event]
+        cake = events.reduce(eventHandler, {})
+        assert(cake.id)
     })
 
 })

@@ -3,7 +3,7 @@ const service = require('../domain/service.js')
 
 describe('cake domain service', () => {
 
-    it('can bake cake', () => {
+    it.only('can bake cake', () => {
         let events = service.bake('my-cake')
 
         assert.deepStrictEqual(events, [

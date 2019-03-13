@@ -2,6 +2,7 @@
   "name": "eslab",
   "version": "0.0.1",
   "description": "event sourcing lab",
+  "repository": "github:dewe/eslab",
   "main": "app.js",
   "scripts": {
     "test": "mocha"
@@ -9,7 +10,8 @@
   "author": "dewe",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "pug": "^2.0.3"
   },
   "devDependencies": {
     "mocha": "^6.0.2"
