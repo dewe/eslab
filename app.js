@@ -25,4 +25,5 @@ app.post('/', function (req, res) {
     res.redirect(id) 
 })
 
+// eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

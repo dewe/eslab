@@ -1,8 +1,9 @@
+/* eslint-disable no-undef */
 const assert = require('assert');
 const eventHandler = require('../domain/eventHandler.js')
 
 describe('handle events', () => {
-    let event = { event: 'cake created', data: { id: 'my-cake' } }
+    let event = { eventType: 'cake created', data: { id: 'my-cake' } }
 
     it('applies event data', () => {
         cake = eventHandler({}, event)

@@ -1,14 +1,17 @@
+/* eslint-disable no-undef */
 const assert = require('assert');
 const service = require('../domain/service.js')
 
+// todo: move 'id' to event store, as 'aggregateId', and add 'aggregateVersion' for locking
+
 describe('cake domain service', () => {
 
-    it.only('can bake cake', () => {
+    it('can bake cake', () => {
         let events = service.bake('my-cake')
 
         assert.deepStrictEqual(events, [
             {
-                event: 'cake created',
+                eventType: 'cake created',
                 data: {
                     id: 'my-cake'
                 }
@@ -22,9 +25,8 @@ describe('cake domain service', () => {
 
         assert.deepStrictEqual(events, [
             {
-                event: 'frosting added',
+                eventType: 'frosting added',
                 data: {
-                    id: 'my-cake',
                     frosting: 'cream',
                     color: 'white'
                 }
@@ -39,9 +41,9 @@ describe('cake domain service', () => {
 
         assert.deepStrictEqual(events, [
             {
-                event: 'added color',
+                eventType: 'added color',
                 data: {
-                    id: 'my-cake',
+                    colorAdded: 'red',
                     color: 'red'
                 }
             }
@@ -52,6 +54,41 @@ describe('cake domain service', () => {
         let cake = { id: 'fake-cake', frosting: 'cream', color: 'red' }
 
         assert.throws(() => { service.makeColor(cake, 'green') }, 'ColorError')
+    })
+
+    it('knows how to make an entire purple cake', () => {
+        let events = service.makeCake()
+        
+        assert.deepStrictEqual(events, [
+            {
+                eventType: 'cake created',
+                data: {
+                    id: 'my-cake'
+                }
+            },
+            {
+                eventType: 'frosting added',
+                data: {
+                    frosting: 'cream',
+                    color: 'white'
+                }
+            },
+            {
+                eventType: 'added color',
+                data: {
+                    colorAdded: 'red',
+                    color: 'red'
+                }
+            },
+            {
+                eventType: 'added color',
+                data: {
+                    colorAdded: 'blue',
+                    color: 'purple'
+                }
+            }
+
+        ])
     })
 
 })

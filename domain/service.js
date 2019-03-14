@@ -1,8 +1,7 @@
-
-function bake(id) {
+exports.bake = (id) => {
     return [
         {
-            event: 'cake created',
+            eventType: 'cake created',
             data: {
                 id
             }
@@ -10,17 +9,14 @@ function bake(id) {
     ]
 }
 
-function addFrosting(cake) {
+exports.addFrosting = (/* cake */) => {
 
 }
 
-function makeColor(cake, color) {
+exports.makeColor = (/* cake, color */) => {
 
 }
 
-module.exports = {
-    bake,
-    addFrosting,
-    makeColor
-}
+exports.makeCake = (/* id */) => {
 
+}
