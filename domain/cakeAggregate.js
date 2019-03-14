@@ -3,8 +3,7 @@ const reducer = (cake, event) => {
     return Object.assign(copy, event.data)
 }
 
-exports.load = (id, eventStore) => {
-    const events = eventStore.load(id).events
+exports.load = (events) => {
     const cake = events.reduce(reducer, {})
     return cake
 }

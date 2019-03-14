@@ -3,15 +3,15 @@ html
     title ES lab 
   body
     h1 ES lab
-      table
-        tr
-          td
-            form(action="/" method="POST")
-              input(type="submit", value="Create")
-          td
-            form(action="/frosting/" + cake.id method="POST")
-              input(type="submit", value="Add frosting")
-          td
-            form(action="/color/red" method="POST")
-              input(type="submit", value="Color red")
+    table
+      tr
+        td
+          form(action="/" method="POST")
+            input(type="submit", value="Create")
+        td
+          form(action="/frosting/" + cake.id method="POST")
+            input(type="submit", value="Add frosting")
+        td
+          form(action="/color/red" method="POST")
+            input(type="submit", value="Color red")
     pre= JSON.stringify(cake, null, 2)

@@ -1,12 +1,19 @@
 const eventStreams = {}
 
 exports.load = (aggregateId) => {
-    return {
-        aggregateId,
-        events: eventStreams[aggregateId] || []
-    }
+    return new Promise((resolve) => {
+        const loaded = {
+            aggregateId,
+            events: eventStreams[aggregateId] || []
+        }
+        resolve(loaded)
+    })
 }
 
 exports.store = (aggregateId, events) => {
-    eventStreams[aggregateId] = events
+    return new Promise(resolve => {
+        const current = eventStreams[aggregateId] || []
+        eventStreams[aggregateId] = current.concat(events)
+        resolve()    
+    })
 }

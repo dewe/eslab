@@ -9,12 +9,15 @@ const aggregate = require('./domain/cakeAggregate')
 app.set('view engine', 'pug')
 
 app.get('/', function (req, res) {
-    res.render('index')
+    res.render('index', { cake: {} })
 })
 
 app.get('/:id', function(req, res) {
-    const cake = aggregate.load(req.params.id, eventStore)
-    res.render('index', { cake })
+    eventStore.load(req.params.id)
+        .then(loaded => {
+            const cake = aggregate.load(loaded.events)
+            res.render('index', { cake })        
+        })
 })
 
 app.post('/', function (req, res) {
@@ -25,10 +28,13 @@ app.post('/', function (req, res) {
 })
 
 app.post('/frosting/:id', function (req, res) {
-    const cake = aggregate.load(req.params.id, eventStore)
-    const events = service.addFrosting(cake)
-    eventStore.store(cake.id, events)
-    res.redirect('/' + cake.id) 
+    eventStore.load(req.params.id)
+        .then(loaded => {
+            const cake = aggregate.load(loaded.events)
+            const events = service.addFrosting(cake)
+            eventStore.store(cake.id, events)
+            res.redirect('/' + cake.id)         
+        })
 })
 
 // eslint-disable-next-line no-console
