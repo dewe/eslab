@@ -62,8 +62,8 @@ describe('cake domain service', () => {
         assert.throws(() => { service.makeColor(cake, 'green') }, 'ColorError')
     })
 
-    it('knows how to make an entire purple cake', () => {
-        let events = service.makeCake()
+    it('knows how to quickly make a purple cake', () => {
+        let events = service.quickMakeCake()
         
         assert.deepStrictEqual(events, [
             {

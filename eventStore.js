@@ -8,7 +8,5 @@ exports.load = (aggregateId) => {
 }
 
 exports.store = (aggregateId, events) => {
-    console.log('***', aggregateId, events);
-    
     eventStreams[aggregateId] = events
 }

@@ -9,14 +9,23 @@ exports.bake = (id) => {
     ]
 }
 
-exports.addFrosting = (/* cake */) => {
-
+exports.addFrosting = (cake) => {
+    // todo: assert no frosting on cake
+    return [
+        {
+            eventType: 'frosting added',
+            data: {
+                frosting: 'cream',
+                color: 'white'
+            }
+        }
+    ]
 }
 
 exports.makeColor = (/* cake, color */) => {
 
 }
 
-exports.makeCake = (/* id */) => {
+exports.quickMakeCake = (/* id */) => {
 
 }
