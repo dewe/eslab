@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 const assert = require('assert');
-const service = require('../domain/service.js')
+const service = require('../domain/service')
 
 // todo: move 'id' to event store, as 'aggregateId', and add 'aggregateVersion' for locking
 
@@ -48,6 +48,12 @@ describe('cake domain service', () => {
                 }
             }
         ])
+    })
+
+    it('requires frosting to add color', () => {
+        let cake = { id: 'fake-cake' }
+
+        assert.throws(() => { service.makeColor(cake, 'red') }, 'ColorError')
     })
 
     it('can not re-color frosting', () => {
