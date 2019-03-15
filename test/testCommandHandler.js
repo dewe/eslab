@@ -62,6 +62,7 @@ describe('cake baking commands', () => {
         assert.throws(() => { commandHandler.makeColor(cake, 'green') }, Error)
     })
 
+    // todo: cut down test to just test for how to make 'purple' cake.
     it.skip('knows how to quickly make a purple cake', () => {
         let events = commandHandler.quickMakeCake()
         

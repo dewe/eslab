@@ -1,18 +1,27 @@
+- var id = cake && cake.id
+
 html
   head
     title ES lab 
   body
+
     h1 
       a(href='/') ES lab
+
     table
       tr
         td
           form(action="/" method="POST")
             input(type="submit", value="Create")
         td
-          form(action="/frosting/" + cake.id method="POST")
+          form(action="/frosting/" + id method="POST")
             input(type="submit", value="Add frosting")
         td
-          form(action="/color/red" method="POST")
+          form(action= id + "/color/red" method="POST")
             input(type="submit", value="Color red")
-    pre= JSON.stringify(cake, null, 2)
+  
+  h2 cake:
+  pre= JSON.stringify(cake, null, 2)
+  
+  h2 events:
+  pre= JSON.stringify(events, null, 2)
