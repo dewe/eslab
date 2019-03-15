@@ -5,7 +5,8 @@
   "repository": "github:dewe/eslab",
   "main": "app.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "nodemon app.js"
   },
   "author": "dewe",
   "license": "MIT",
@@ -15,6 +16,7 @@
   },
   "devDependencies": {
     "eslint": "^5.15.1",
-    "mocha": "^6.0.2"
+    "mocha": "^6.0.2",
+    "nodemon": "^1.18.10"
   }
 }
