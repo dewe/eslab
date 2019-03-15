@@ -3,9 +3,8 @@ const reducer = (cake, event) => {
     return Object.assign(copy, event.data)
 }
 
-exports.load = (events) => {
-    const cake = events.reduce(reducer, {})
-    return cake
+exports.apply = (events) => {
+    return events.reduce(reducer, {})
 }
 
 exports.reducer = reducer

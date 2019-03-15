@@ -3,8 +3,8 @@ const app = express()
 const port = 3000
 
 const eventStore = require('./eventStore')
-const service = require('./domain/service')
-const aggregate = require('./domain/cakeAggregate')
+const service = require('./domain/commandHandler')
+const aggregate = require('./domain/aggregate')
 
 app.set('view engine', 'pug')
 
@@ -15,7 +15,7 @@ app.get('/', function (req, res) {
 app.get('/:id', function(req, res) {
     eventStore.load(req.params.id)
         .then(loaded => {
-            const cake = aggregate.load(loaded.events)
+            const cake = aggregate.apply(loaded.events)
             res.render('index', { cake })        
         })
 })
@@ -30,7 +30,7 @@ app.post('/', function (req, res) {
 app.post('/frosting/:id', function (req, res) {
     eventStore.load(req.params.id)
         .then(loaded => {
-            const cake = aggregate.load(loaded.events)
+            const cake = aggregate.apply(loaded.events)
             const events = service.addFrosting(cake)
             eventStore.store(cake.id, events)
             res.redirect('/' + cake.id)         

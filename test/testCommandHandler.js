@@ -1,13 +1,13 @@
 /* eslint-disable no-undef */
 const assert = require('assert');
-const service = require('../domain/service')
+const commandHandler = require('../domain/commandHandler')
 
 // todo: move 'id' to event store, as 'aggregateId', and add 'aggregateVersion' for locking
 
-describe('cake domain service', () => {
+describe('cake baking commands', () => {
 
     it('can bake cake', () => {
-        let events = service.bake('my-cake')
+        let events = commandHandler.bake('my-cake')
 
         assert.deepStrictEqual(events, [
             {
@@ -21,7 +21,7 @@ describe('cake domain service', () => {
 
     it('can add frosting', () => {
         let cake = { id: 'fake-cake' }
-        let events = service.addFrosting(cake)
+        let events = commandHandler.addFrosting(cake)
 
         assert.deepStrictEqual(events, [
             {
@@ -37,7 +37,7 @@ describe('cake domain service', () => {
     it('can add color to frosting', () => {
         let cake = { id: 'fake-cake', frosting: 'cream', color: 'white' }
 
-        let events = service.makeColor(cake, 'red')
+        let events = commandHandler.makeColor(cake, 'red')
 
         assert.deepStrictEqual(events, [
             {
@@ -53,17 +53,17 @@ describe('cake domain service', () => {
     it('requires frosting to add color', () => {
         let cake = { id: 'fake-cake' }
 
-        assert.throws(() => { service.makeColor(cake, 'red') }, 'ColorError')
+        assert.throws(() => { commandHandler.makeColor(cake, 'red') }, 'ColorError')
     })
 
     it('can not re-color frosting', () => {
         let cake = { id: 'fake-cake', frosting: 'cream', color: 'red' }
 
-        assert.throws(() => { service.makeColor(cake, 'green') }, 'ColorError')
+        assert.throws(() => { commandHandler.makeColor(cake, 'green') }, 'ColorError')
     })
 
     it('knows how to quickly make a purple cake', () => {
-        let events = service.quickMakeCake()
+        let events = commandHandler.quickMakeCake()
         
         assert.deepStrictEqual(events, [
             {
