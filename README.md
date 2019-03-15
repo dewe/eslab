@@ -24,6 +24,6 @@ node app.js
 
 ## suggestions for excercises
 
-* complete commandHandler functionality and ui buttton
-* add optimistic locking 
+* complete commandHandler functionality and ui buttons
+* add optimistic locking
 * use a dedicated event store, such as serialized.io
