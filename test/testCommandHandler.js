@@ -53,13 +53,13 @@ describe('cake baking commands', () => {
     it('requires frosting to add color', () => {
         let cake = { id: 'fake-cake' }
 
-        assert.throws(() => { commandHandler.makeColor(cake, 'red') }, 'ColorError')
+        assert.throws(() => { commandHandler.makeColor(cake, 'red') }, Error)
     })
 
     it('can not re-color frosting', () => {
         let cake = { id: 'fake-cake', frosting: 'cream', color: 'red' }
 
-        assert.throws(() => { commandHandler.makeColor(cake, 'green') }, 'ColorError')
+        assert.throws(() => { commandHandler.makeColor(cake, 'green') }, Error)
     })
 
     it.skip('knows how to quickly make a purple cake', () => {
