@@ -21,3 +21,9 @@ npm test
 node app.js
 // open http://localhost:3000
 ```
+
+## suggestions for excercises
+
+* complete commandHandler functionality (i.e. green tests)
+* add optimistic locking 
+* use a dedicated event store, such as serialized.io
