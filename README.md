@@ -14,3 +14,10 @@ npm install
 ```bash
 npm test
 ```
+
+## run
+
+```bash
+node app.js
+// open http://localhost:3000
+```
