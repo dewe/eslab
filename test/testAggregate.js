@@ -13,12 +13,6 @@ describe('cake aggregate', () => {
             assert(cake.id == 'my-cake')
         })
 
-        it('returns a new copy', () => {
-            cake1 = aggregate.apply([event])
-            cake2 = aggregate.apply([event])
-            assert(cake1 != cake2)
-        })
-
         it('can hydrate from multiple events', () => {
             cake = aggregate.apply([event, event2])
             assert(cake.id)
