@@ -3,53 +3,43 @@ const app = express()
 const port = 3000
 
 const eventStore = require('./eventStore')
-const service = require('./domain/commandHandler')
 const aggregate = require('./domain/aggregate')
+const service = require('./domain/service')
 
 app.set('view engine', 'pug')
-
-// todo: extract route functions to a service
-// todo: handle commandHandler exceptions
 
 app.get('/', function (req, res) {
     res.render('index')
 })
 
-app.get('/:id', function (req, res) {
+app.get('/:id', function (req, res, next) {
     eventStore.load(req.params.id)
         .then(loaded => {
             const events = loaded.events
             const cake = aggregate.apply(events)
             res.render('index', { cake, events })
         })
+        .catch(error => next(error))
 })
 
-app.post('/', function (req, res) {
+app.post('/', function (req, res, next) {
     const id = 'my-cake'
-    const events = service.bake(id)
-    eventStore.store(id, events)
-    res.redirect('/' + id)
+    service.createCake(eventStore, id)
+        .then(() => res.redirect('/' + id))
+        .catch(error => next(error))
 })
 
-app.post('/:id/frosting', function (req, res) {
-    eventStore.load(req.params.id)
-        .then(loaded => {
-            const cake = aggregate.apply(loaded.events)
-            const events = service.addFrosting(cake)
-            eventStore.store(cake.id, events)
-            res.redirect('/' + cake.id)
-        })
+app.post('/:id/frosting', function (req, res, next) {
+    service.addFrosting(eventStore, req.params.id)
+        .then(() => res.redirect('/' + req.params.id))
+        .catch(error => next(error))
 })
 
-app.post('/:id/color/:color', function (req, res) {
-    eventStore.load(req.params.id)
-        .then(loaded => {
-            const cake = aggregate.apply(loaded.events)
-            const events = service.makeColor(cake, req.params.color)
-            eventStore.store(cake.id, events)
-            res.redirect('/' + cake.id)
-        })
+app.post('/:id/color/:color', function (req, res, next) {
+    service.makeColor(eventStore, req.params.id, req.params.color)
+        .then(() => res.redirect('/' + req.params.id))
+        .catch(error => next(error))
 })
 
 // eslint-disable-next-line no-console
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`Listening on port ${port}!`))

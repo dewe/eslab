@@ -1,3 +1,5 @@
+// todo: move command handling into aggregate.js
+
 exports.bake = (id) => {
     return [
         {
@@ -9,7 +11,7 @@ exports.bake = (id) => {
     ]
 }
 
-exports.addFrosting = (cake) => {
+exports.addFrosting = (/* cake */) => {
     // todo: assert no frosting on cake
     return [
         {
@@ -22,8 +24,17 @@ exports.addFrosting = (cake) => {
     ]
 }
 
-exports.makeColor = (/* cake, color */) => {
-
+exports.makeColor = (cake, color) => {
+    // todo: assert on current cake color and frosting
+    return [
+        {
+            eventType: 'added color',
+            data: {
+                color: color,
+                colorAdded: color
+            }
+        }
+    ]
 }
 
 exports.quickMakeCake = (/* id */) => {
