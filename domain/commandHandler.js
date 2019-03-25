@@ -25,8 +25,8 @@ exports.addFrosting = (/* cake */) => {
 }
 
 exports.makeColor = (cake, color) => {
-    // todo: assert on current cake color and frosting
     assert(cake.frosting, new Error('No frosting'))
+    assert(cake.color === 'white', new Error('Not white')) 
 
     return [
         {
