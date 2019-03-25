@@ -34,6 +34,12 @@ describe('cake baking commands', () => {
         ])
     })
 
+    it('can not add frosting twice', () => {
+        let cake = { id: 'fake-cake', frosting: 'cream', color: 'red' }
+
+        assert.throws(() => { commandHandler.addFrosting(cake) }, /^Error: Not clean cake$/)
+    })
+
     it('can add color to frosting', () => {
         let cake = { id: 'fake-cake', frosting: 'cream', color: 'white' }
 

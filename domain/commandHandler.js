@@ -11,8 +11,9 @@ exports.bake = (id) => {
     ]
 }
 
-exports.addFrosting = (/* cake */) => {
-    // todo: assert no frosting on cake
+exports.addFrosting = (cake) => {
+    assert(!cake.frosting, new Error('Not clean cake'))
+
     return [
         {
             eventType: 'frosting added',
