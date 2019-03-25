@@ -53,19 +53,19 @@ describe('cake baking commands', () => {
     it('requires frosting to add color', () => {
         let cake = { id: 'fake-cake' }
 
-        assert.throws(() => { commandHandler.makeColor(cake, 'red') }, Error)
+        assert.throws(() => { commandHandler.makeColor(cake, 'red') }, /Error: No frosting/)
     })
 
     it('can not re-color frosting', () => {
         let cake = { id: 'fake-cake', frosting: 'cream', color: 'red' }
 
-        assert.throws(() => { commandHandler.makeColor(cake, 'green') }, Error)
+        assert.throws(() => { commandHandler.makeColor(cake, 'blue') }, Error)
     })
 
     it('knows how to make a purple cake', () => {
         let cake = { id: 'fake-cake', frosting: 'cream', color: 'white' }
 
-        let events = commandHandler.makeColor(cake, 'red')
+        let events = commandHandler.makeColor(cake, 'purple')
 
         assert.deepStrictEqual(events, [
             {

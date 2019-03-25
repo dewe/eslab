@@ -1,3 +1,5 @@
+const assert = require('assert')
+
 exports.bake = (id) => {
     return [
         {
@@ -24,6 +26,8 @@ exports.addFrosting = (/* cake */) => {
 
 exports.makeColor = (cake, color) => {
     // todo: assert on current cake color and frosting
+    assert(cake.frosting, new Error('No frosting'))
+
     return [
         {
             eventType: 'added color',
