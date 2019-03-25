@@ -62,24 +62,12 @@ describe('cake baking commands', () => {
         assert.throws(() => { commandHandler.makeColor(cake, 'green') }, Error)
     })
 
-    // todo: cut down test to just test for how to make 'purple' cake.
-    it.skip('knows how to quickly make a purple cake', () => {
-        let events = commandHandler.quickMakeCake()
-        
+    it('knows how to make a purple cake', () => {
+        let cake = { id: 'fake-cake', frosting: 'cream', color: 'white' }
+
+        let events = commandHandler.makeColor(cake, 'red')
+
         assert.deepStrictEqual(events, [
-            {
-                eventType: 'cake created',
-                data: {
-                    id: 'my-cake'
-                }
-            },
-            {
-                eventType: 'frosting added',
-                data: {
-                    frosting: 'cream',
-                    color: 'white'
-                }
-            },
             {
                 eventType: 'added color',
                 data: {
@@ -94,8 +82,6 @@ describe('cake baking commands', () => {
                     color: 'purple'
                 }
             }
-
         ])
     })
-
 })

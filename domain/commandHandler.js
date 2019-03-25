@@ -1,5 +1,3 @@
-// todo: move command handling into aggregate.js
-
 exports.bake = (id) => {
     return [
         {
