@@ -24,6 +24,6 @@ npm start
 
 ## suggestions for excercises
 
-* complete commandHandler functionality and ui buttons
-* add optimistic locking
-* use a dedicated event store, such as serialized.io
+* [x] complete commandHandler functionality and ui buttons
+* [ ] add optimistic locking to event store
+* [ ] use a dedicated event store, such as serialized.io
